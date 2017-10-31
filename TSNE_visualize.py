@@ -25,7 +25,7 @@ def normalize(vals):
     return output
 
 def is_valid(word):
-    inv = string.punctuation
+    inv = string.punctuation + string.digits 
     if any(c in inv for c in word):
         return False
     return True
@@ -72,15 +72,14 @@ def visualize(kv, name, plot_dir=plot_dir, max_count = 250000):
     #Visualize
     
     filename = plot_dir + '{} TSNE.png'.format(name)
-    plt.figure(figsize=(24,13.5))
+    plt.figure(figsize=(18,18))
     for i, label in enumerate(labels):
         x,y = low_dim[i,:]
         plt.scatter(x,y)
         plt.annotate(label, xy = (x,y), xytext = (5,2), textcoords='offset points', ha='right', va = 'bottom')
         
-    
-    plt.show()
     plt.savefig(filename)
+    plt.show()
 
 if __name__ == "__main__":
     vector_dir = './vectors/'
